@@ -1,0 +1,30 @@
+<div class="sessionc">
+  <p>Jugando como: <%= username%></p>
+  <a class="cerrarses">cerrar sesión</a>
+</div>
+<main>
+  <header>
+    <h1 class="searchH1">Buscando partidas</h1>
+    <div class="buttons">
+      <a href="/createLocal">jugar vs IA</a>
+      <a href="/create">crear partida</a>
+    </div>
+  </header>
+  <section class="games">
+    <% if (ok) { 
+       games.forEach(n => { %>
+        <div>
+              <span>
+                <h3>Partida<%= n.id %></h3>
+                <h3>Creada por: <%= n.player %></h3><h3>-</h3>
+                <h3><%= n.data %></h3>
+              </span>
+              <a href="/join?id=<%= n.id %>">JUGAR</a>
+          </div>
+     <% }); %> 
+    <% } else { %>
+      <h1>NO HAY PARTIDAS DISPONIBLES </h1>
+    <% } %>
+  </section>
+</main>
+<script src='./js/search.js'></script>
