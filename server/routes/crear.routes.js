@@ -5,11 +5,12 @@ const { checkUser, sqlcon } = require('./../middlewares/auth');
 /* crea partida */
 router.get('/create', checkUser, (req, res) => {
   let con = sqlcon();
+  console.log(2);
   con.connect(function (err) {
     if (err) return res.redirect('/search');
     let d = new Date();
-    con.query(`INSERT INTO partides VALUES (null,'${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}','${req.id}',NULL,'host',NULL,'${req.usuari}')`, (err, result) => {
-      if (err) return res.redirect('/search');
+    con.query(`INSERT INTO partides VALUES (null,'${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}','${req.id}',null,1,null,'${req.usuari}')`, (err, result) => {
+      if (err) { console.log(err); return res.redirect('/search')};
       res.render('gameWaiting', { id: result.insertId });
       con.end();
     });
